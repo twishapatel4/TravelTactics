@@ -1,0 +1,272 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f8fb;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+.head{
+    text-align: center;
+}
+
+.button,
+form button.submit-button,
+.delete-button,
+.save-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0077cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.button:hover,
+form button.submit-button:hover,
+.save-button:hover {
+    background-color: #005fa3;
+}
+
+.delete-button {
+    background-color: #dc3545;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.cancel-button,
+form a.cancel-button {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    border: 1px solid #ccc;
+    padding: 10px 18px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-button:hover,
+form a.cancel-button:hover {
+    background-color: #f0f0f0;
+    color: black;
+}
+main {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+main.location-manager {
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container,
+.delete-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.delete-container h2 {
+    color: #dc3545;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+.delete-container .highlight {
+    color: #0077cc;
+    font-weight: bold;
+}
+
+.img {
+    height: auto;
+    width: 90%;
+    display: block;
+    margin: auto;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+li {
+    background-color: #ffffff;
+    border: 1px solid #e1e1e1;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+li a {
+    margin-right: 10px;
+    color: #0077cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+li a:hover {
+    text-decoration: underline;
+}
+
+li span {
+    font-style: italic;
+    color: #555;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+.card,
+.location-card {
+    background-color: linear-gradient(rgb(184, 185, 230),rgb(83, 121, 191));
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover,
+.location-card:hover {
+    transform: scale(1.03);
+}
+
+.card h3,
+.location-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #0077cc;
+}
+
+.location-card input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+.location-details,
+.details {
+    list-style: none;
+    padding: 0;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.location-details li,
+.details li {
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.save-button {
+    margin: 30px auto;
+    display: block;
+    font-size: 16px;
+}
+
+.back-link {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #0077cc;
+    text-decoration: none;
+}
+
+
+.itinerary-details {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9ff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+}
+
+.itinerary-details p {
+    font-size: 18px;
+    color: #333;
+    margin: 15px 0;
+}
+
+.itinerary-details strong {
+    color: #5a67d8;
+    font-weight: 600;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 images per row */
+    gap: 15px; /* Adds space between images */
+    margin: 20px auto; /* Center the grid with margin */
+    padding: 10px;
+}
+
+.state-image {
+    width: 250px; /* Make images a bit larger */
+    height: 250px; /* Maintain a square aspect ratio */
+    object-fit: cover; /* Ensure the image fills the box without distortion */
+    border-radius: 10px; /* Rounded corners for a nicer effect */
+    transition: transform 0.3s ease; /* Smooth zoom effect */
+}
+
+.state-image:hover {
+    transform: scale(1.1); /* Slight zoom effect when hovered */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1200px) {
+    .image-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 items per row on medium screens */
+    }
+}
+
+@media (max-width: 900px) {
+    .image-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 items per row on smaller screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .image-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 items per row on very small screens */
+    }
+}
+
+@media (max-width: 400px) {
+    .image-grid {
+        grid-template-columns: 1fr; /* 1 item per row on extra small screens */
+    }
+}
+
+
+@media (max-width: 400px) {
+    .image-grid {
+        grid-template-columns: 1fr; /* 1 image per row on extra small screens */
+    }
+}

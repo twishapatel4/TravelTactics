@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Tactics - Your Journal</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/task.css' %}">
+    <style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .journal-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            max-width: 300px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        .journal-card img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .journal-card p {
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="heading-container">
+        <span class="welcome-text">Hello {{ request.user }} !!</span>
+        <img src="{% static 'images/gps.png' %}" alt="Map Icon" class="map-icon">
+        <h1 class="heading">Your Travel Journal</h1>
+        <div class="header-links">
+            <a href="{% url 'intro' %}" class="home-link">Home</a>
+            <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<main>
+    <a class="add-expense-btn" href="{% url 'upload_journal' %}">Add New Entry</a>
+
+    <div class="gallery">
+        {% for entry in entries %}
+            <div class="journal-card">
+                <img src="{{ entry.image.url }}" alt="Journal Image">
+                <p><strong>{{ entry.caption }}</strong></p>
+                <small>{{ entry.created_at|date:"d M Y, H:i" }}</small>
+
+                <form action="{% url 'delete_journal' entry.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="delete-button">Delete</button>
+    </form>
+            </div>
+        {% empty %}
+            <p>No journal entries yet. Start adding memories!</p>
+        {% endfor %}
+    </div>
+</main>
+
+<footer>
+    <p class="tag-1">Travel Savvy. Travel Happy !!</p>
+    <p class="brand">Travel Tactics</p>
+</footer>
+</body>
+</html>

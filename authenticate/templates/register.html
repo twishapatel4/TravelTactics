@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>Sign Up Form</title>
+  </head>
+
+  <body>
+    <div class="hero-image">
+      <img src="{% static 'images/example.jpg' %}" alt="Example Image" />
+    </div>
+
+    <div class="projectName">
+      <h1>Travel Tactics</h1>
+    </div>
+
+    <div class="tagline">
+      <h2>Travel Savvy, Travel Happy!</h2>
+    </div>
+
+    <div class="container" id="container">
+      <div class="form-container sign-in-container">
+        <form method="post" action="{% url 'register' %}">
+          {% csrf_token %}
+          <p class="subtitle">Create your Travel Tactics account</p>
+
+          <div class="form-group">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+          </div>
+
+          <div class="form-group">
+            {{ form.password1.label_tag }}
+            {{ form.password1 }}
+          </div>
+
+          <div class="form-group">
+            {{ form.password2.label_tag }}
+            {{ form.password2 }}
+          </div>
+
+          <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+      </div>
+
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-right">
+            <h1>Hello, Traveller!</h1>
+            <p>If you already have an account, you can sign in here!</p>
+            <a href="{% url 'login' %}" class="ghost">Sign In</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

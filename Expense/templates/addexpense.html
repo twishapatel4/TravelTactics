@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Expense</title>
+    <link rel="stylesheet" href="{% static 'css/expense.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <header>
+        <div class="heading-container">
+            <span class="welcome-text">Helloo {{ request.user }} !!</span>
+            <img src="{% static 'images/gps.png' %}" alt="Map Icon" class="map-icon">
+            <h1 class="heading">Add New Expense</h1>
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <a href="{% url 'intro' %}" class="home-link">Home</a>
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+    </header>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="add-btn">Add Expense</button>
+    </form>
+    <footer>
+        <p class="tag-1">Travel Savvy. Travel Happy !! </p>
+        <p class="brand">Travel Tactics</p>
+    </footer>
+</body>
+</html>

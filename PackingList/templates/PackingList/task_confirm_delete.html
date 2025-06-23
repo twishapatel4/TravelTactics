@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Tactics - Delete Essential</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/task.css' %}">
+</head>
+<body>
+<header>
+    <div class="heading-container">
+        <span class="welcome-text">Helloo {{ request.user }} !!</span>
+        <img src="{% static 'images/gps.png' %}" alt="Map Icon" class="map-icon">
+        <h1 class="heading">Your Adventure Book</h1>
+        <div class="header-links">
+            <a href="{% url 'intro' %}" class="home-link">Home</a>
+            <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="packing-list-container">
+        <h3 class="task-heading">Confirm Deletion</h3>
+        <a class="add-expense-btn" href="{% url 'packinglist:tasks' %}">Go Back</a>
+
+        <form method="POST" class="delete-form">
+            {% csrf_token %}
+            <p>Are you sure you want to delete this task: <strong>"{{ task }}"</strong>?</p>
+            <input type="submit" value="Delete" class="delete-btn">
+        </form>
+    </div>
+</main>
+
+<footer>
+    <p class="tag-1">Travel Savvy. Travel Happy !!</p>
+    <p class="brand">Travel Tactics</p>
+</footer>
+</body>
+</html>

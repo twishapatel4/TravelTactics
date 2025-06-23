@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Travel Tactics</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+
+<body>
+    <header>
+        <div class="heading-container">
+            <span class="welcome-text">Helloo {{ request.user }} !!</span>
+            <img src="{% static 'images/gps.png' %}" alt="Map Icon" class="map-icon">
+            <h1 class="heading">Your Adventure Book</h1>
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <a href="{% url 'intro' %}" class="home-link">Home</a>
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+    </header>
+
+    {% block content %}
+    <div class="main">
+        <div class="tagline">
+            <p>Jobs fill your pockets, Adventures fill your soul.</p>
+        </div>
+        <div class="images">
+            <img src="{% static 'images/travel1.jpg' %}"></img>
+            <img src="{% static 'images/travel2.jpg' %}"></img>
+            <img src="{% static 'images/travel5.jpg' %}"></img>
+            <img src="{% static 'images/travel3.jpg' %}"></img>
+            <img src="{% static 'images/travel4.jpg' %}"></img>
+            <img src="{% static 'images/travel7.jpg' %}"></img>
+            <img src="{% static 'images/travel6.jpg' %}"></img>
+            <img src="{% static 'images/travel8.jpg' %}"></img>
+            <img src="{% static 'images/travel9.jpeg' %}"></img>
+            <img src="{% static 'images/travel10.jpg' %}"></img>
+        </div>
+        <div class="functions-container">
+            <div class="myfunctions">
+                <h2>My Adventures</h2>
+                <img src="{% static 'images/advv.jpg' %}" alt="Profile Image" class="adv">
+                <p>Ready to begin your journey? Start planning your perfect getaway by choosing your dream destination,explore the must-visit places and pick your choice.</p>
+                <a href="{% url 'itinerary_list' %}" class="button">Start Trip</a>
+            </div>
+
+            <div class="myfunctions">
+                <h2>Trip Essentials</h2>
+                <img src="{% static 'images/essentials.jpg' %}" alt="Trip Essentials" class="adv">
+                <p>Get ready with ease! Use our checklist to remember all your travel must haves from passports and chargers to sunscreen and snacks.</p>
+                <a href="{% url 'PackingList:tasks' %}" class="button">Your Essentials</a>
+            </div>
+
+            <div class="myfunctions">
+                <h2>Your Expense</h2>
+                <img src="{% static 'images/expenses.avif' %}" alt="Travel Map" class="adv">
+                <p>Keep your spending in check! Use our tools to plan and manage your expenses so your trip stays fun and within budget.Track all your expenses here.</p>
+                <a href="{% url 'expense_list' %}" class="button">Save Money Bro</a>
+            </div>
+
+            <div class="myfunctions">
+                <h2>Make your Reservations</h2>
+                <img src="{% static 'images/hotel.png' %}" alt="Budget Planner" class="adv">
+                <p>Stay within your budget with our smart planner. Track expenses and plan ahead easily.</p>
+                <a href="#" class="button">Reservations</a>
+            </div>
+
+            <div class="myfunctions">
+                <h2>Travel Journal</h2>
+                <img src="{% static 'images/collage.jpg' %}" alt="Travel Journal" class="adv">
+                <p>Write about your memories and keep them forever. Your journey deserves to be remembered. A picture is worth a thousand words!</p>
+                <a href="{% url 'view_journal' %}" class="button">Perfect Moments</a>
+            </div>
+
+            <div class="myfunctions">
+                <h2>Your Itinerary</h2>
+                <img src="{% static 'images/itinerary.jpg' %}" alt="Photo Gallery" class="adv">
+                <p>Share your trip with your friends. Plan your activities and create lasting memories together. </p>
+                <a href="{% url 'trip_summary' %}" class="button">Your Trip</a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p class="tag-1">Travel Savvy. Travel Happy !! </p>
+        <p class="brand">Travel Tactics</p>
+    </footer>
+    {% endblock %}
+</body>
+
+</html>

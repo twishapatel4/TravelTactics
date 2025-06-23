@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Tactics - My Essentials</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/task.css' %}">
+</head>
+<body>
+<header>
+    <div class="heading-container">
+        <span class="welcome-text">Helloo {{ request.user }} !!</span>
+        <img src="{% static 'images/gps.png' %}" alt="Map Icon" class="map-icon">
+        <h1 class="heading">Your Essentials</h1>
+        <div class="header-links">
+            <a href="{% url 'intro' %}" class="home-link">Home</a>
+            <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="packing-list-container">
+        <a class="add-expense-btn" href="{% url 'packinglist:task-create' %}">➕ Add Task</a>
+
+        <form method="get">
+            <input type="text" name="search-area" value="{{ search_area }}" placeholder="Search your tasks...">
+            <input type="submit" value="Search">
+        </form>
+
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Status</th>
+                <th colspan="3">Actions</th>
+            </tr>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.title }}</td>
+                <td>
+                    {% if task.complete %}
+                        ✅ Complete
+                    {% else %}
+                        ⏳ Incomplete
+                    {% endif %}
+                </td>
+                <td><a href="{% url 'packinglist:task' task.id %}">🔍 View</a></td>
+                <td><a href="{% url 'packinglist:task-update' task.id %}">✏️ Edit</a></td>
+                <td><a href="{% url 'packinglist:task-delete' task.id %}">❌ Delete</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4"><h3>No Items in List 😢</h3></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</main>
+
+<footer>
+    <p class="tag-1">Travel Savvy. Travel Happy !!</p>
+    <p class="brand">Travel Tactics</p>
+</footer>
+</body>
+</html>

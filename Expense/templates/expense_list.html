@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/expense.css' %}">
+</head>
+<body> <header>
+    <div class="heading-container">
+        <span class="welcome-text">Helloo {{ request.user }} !!</span>
+        <img src="{% static 'images/gps.png' %}" alt="Map Icon" class="map-icon">
+        <h1 class="heading">Your Expenses</h1>
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <a href="{% url 'intro' %}" class="home-link">Home</a>
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </div>
+</header>
+
+    <h2>Total Amount: ${{ total_amount }}</h2>
+    <img class="exp" src="{% static 'images/exp.jpg'%}">
+    <a href="{% url 'add_expense' %}" class="add-expense-btn">Add New Expense</a>
+    
+    <div class="expense-container">
+        {% for expense in expenses %}
+        <div class="expense-item">
+            <p><strong>{{ expense.name }}</strong></p>
+            <p>Amount: ${{ expense.amount }}</p>
+            <p>Date: {{ expense.date }}</p>
+            <form action="{% url 'delete_expense' expense.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="delete-btn">Delete</button>
+            </form>
+        </div>
+        {% empty %}
+        <p>No expenses added yet.</p>
+        {% endfor %}
+    </div> 
+    <footer>
+        <p class="tag-1">Travel Savvy. Travel Happy !! </p>
+        <p class="brand">Travel Tactics</p>
+    </footer>
+</body>
+</html>

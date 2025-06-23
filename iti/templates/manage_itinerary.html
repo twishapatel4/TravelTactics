@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Itinerary Locations</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/iti.css' %}">
+</head>
+<body>
+    <header>
+        <div class="heading-container">
+            <span class="welcome-text">Helloo {{ request.user }} !!</span>
+            <img src="{% static 'images/gps.png' %}" alt="Map Icon" class="map-icon">
+            <h1 class="heading">Manage Locations for <span class="highlight">{{ itinerary.title }}</span></h1>
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <a href="{% url 'intro' %}" class="home-link">Home</a>
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+    </header>
+
+    <main class="location-manager">
+        <form method="post">
+            {% csrf_token %}
+            {% if all_locations %}
+                <div class="card-grid">
+                    {% for location in all_locations %}
+                        <div class="location-card">
+                            <label>
+                                <input type="checkbox" name="locations" value="{{ location.id }}"
+                                    {% if location in itinerary.locations.all %}checked{% endif %}>
+                                <h3>{{ location.name }}</h3>
+                                <p><em>{{ location.city }}, {{ location.state }}</em></p>
+                            </label>
+                            <ul class="details">
+                                <li><strong>Type:</strong> {{ location.location_type }}</li>
+                                <!-- <li><strong>Established:</strong> {{ location.establishment_year|default:"N/A" }}</li> -->
+                                <li><strong>Visit Duration:</strong> {{ location.visit_duration_hours|default:"N/A" }} hrs</li>
+                                <li><strong>Rating:</strong> {{ location.google_rating }}</li>
+                                <li><strong>Fee:</strong> {{ location.entrance_fee|default:"Free" }}</li>
+                                <li><strong>Airport:</strong> {{ location.airport_within_city|yesno:"Yes,No" }}</li>
+                                <li><strong>Weekly Off:</strong> {{ location.weekly_off|default:"None" }}</li>
+                                <li><strong>Significance:</strong> {{ location.significance|default:"N/A" }}</li>
+                                <!-- <li><strong>DSLR Allowed:</strong> {{ location.dslr_allowed|yesno:"Yes,No" }}</li> -->
+                                <li><strong>Best Time:</strong> {{ location.best_time_to_visit|default:"Anytime" }}</li>
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="save-button">Save Changes</button>
+            {% else %}
+                <p class="no-location">No locations available for the selected state.</p>
+            {% endif %}
+        </form>
+        <a href="{% url 'itinerary_detail' itinerary.pk %}" class="back-link">Back to Itinerary</a>
+    </main>
+
+    <footer>
+        <p class="tag-1">Travel Savvy. Travel Happy !!</p>
+        <p class="brand">Travel Tactics</p>
+    </footer>
+</body>
+</html>

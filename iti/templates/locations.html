@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Locations</title>
+</head>
+<body>
+    <h1>Tourist Locations</h1>
+
+    <!-- State Selection Dropdown -->
+    <form method="GET">
+        <label for="state">Select State:</label>
+        <select name="state" id="state" onchange="this.form.submit()">
+            <option value="">-- Select a State --</option>
+            {% for s in states %}
+                <option value="{{ s }}" {% if request.GET.state == s %}selected{% endif %}>{{ s }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <!-- Display Locations -->
+    <h2>Locations</h2>
+    <ul>
+        {% for location in locations %}
+            <li>{{ location.name }} - {{ location.city }}, {{ location.state }}</li>
+        {% empty %}
+            <li>No locations available for the selected state.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

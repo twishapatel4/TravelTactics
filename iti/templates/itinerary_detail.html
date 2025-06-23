@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Itinerary</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/iti.css' %}">
+</head>
+<body>
+
+{% block content %}
+<header>
+    <div class="heading-container">
+        <span class="welcome-text">Helloo {{ request.user }} !!</span>
+        <img src="{% static 'images/gps.png' %}" alt="Map Icon" class="map-icon">
+        <h1 class="heading">Your Itinerary for {{ itinerary.title}}</h1>
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <a href="{% url 'intro' %}" class="home-link">Home</a>
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </div>
+</header>
+
+<section class="itinerary-details">
+    <p><strong>State:</strong> {{ itinerary.state }}</p>
+    <p><strong>Start Date:</strong> {{ itinerary.start_date }}</p>
+    <p><strong>End Date:</strong> {{ itinerary.end_date }}</p>
+    <p><strong>Notes:</strong> {{ itinerary.notes }}</p>
+</section>
+
+{% with itinerary.state|title|cut:" " as state_folder %}
+<h3 style="text-align: center; font-size: 24px; margin-bottom: 20px;">Attractions you will wonder on your trip</h3>
+<div class="image-grid">
+    {% for i in "0123456789" %}
+        <img src="{% static 'images/'|add:state_folder|add:'/image'|add:i|add:'.jpg' %}"
+             alt="State image {{ i }}" class="state-image">
+    {% endfor %}
+</div>
+{% endwith %}
+
+<h3 class="head">Selected Locations: </h3>
+{% if itinerary.locations.all %}
+    <ul class="card-grid">
+        {% for location in itinerary.locations.all %}
+        <div class="location-card">
+            <label>
+                <h3>{{ location.name }}</h3>
+                <p><em>{{ location.city }}, {{ location.state }}</em></p>
+            </label>
+            <ul class="details">
+                <li><strong>Type:</strong> {{ location.location_type }}</li>
+                <!-- <li><strong>Established:</strong> {{ location.establishment_year|default:"N/A" }}</li> -->
+                <li><strong>Visit Duration:</strong> {{ location.visit_duration_hours|default:"N/A" }} hrs</li>
+                <li><strong>Rating:</strong> {{ location.google_rating }}</li>
+                <li><strong>Fee:</strong> {{ location.entrance_fee|default:"Free" }}</li>
+                <li><strong>Airport:</strong> {{ location.airport_within_city|yesno:"Yes,No" }}</li>
+                <li><strong>Weekly Off:</strong> {{ location.weekly_off|default:"None" }}</li>
+                <li><strong>Significance:</strong> {{ location.significance|default:"N/A" }}</li>
+                <!-- <li><strong>DSLR Allowed:</strong> {{ location.dslr_allowed|yesno:"Yes,No" }}</li> -->
+                <li><strong>Best Time:</strong> {{ location.best_time_to_visit|default:"Anytime" }}</li>
+            </ul>
+        </div>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No locations added yet.</p>
+{% endif %}
+
+<div class="navigation-links">
+    <a class="back-link" href="{% url 'manage_itinerary' itinerary.pk %}">Manage Locations</a> |
+    <a href="{% url 'itinerary_list' %}" class="back-link">Back to Itineraries</a>
+</div>
+{% endblock %}
+
+<footer>
+    <p class="tag-1">Travel Savvy. Travel Happy !! </p>
+    <p class="brand">Travel Tactics</p>
+</footer>
+
+</body>
+</html>

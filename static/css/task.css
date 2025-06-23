@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f9ff;
+    color: #333;
+}
+
+main {
+    padding: 40px;
+}
+
+.packing-list-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.task-heading {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #5187bc;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #4e9bd2;
+    color: white;
+    font-weight: 600;
+}
+
+td a {
+    text-decoration: none;
+    color: #388fce;
+    font-weight: 500;
+}
+
+td a:hover {
+    text-decoration: underline;
+}
+
+input[type="text"],
+input[type="submit"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    background-color: #63a2ce;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #417193;
+}
+
+.add-expense-btn,
+.delete-btn,
+.add-btn {
+    background-color: #739ebd;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 10px 0;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.add-expense-btn:hover,
+.delete-btn:hover,
+.add-btn:hover {
+    background-color: #286d9e;
+}
+
+.task-detail {
+    font-size: 18px;
+    margin: 15px 0;
+}
+

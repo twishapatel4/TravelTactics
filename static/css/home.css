@@ -1,0 +1,263 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+}
+
+.main{
+margin: 10px 10px 10px 10px;
+}
+
+.tagline {
+    text-align: center;
+    font-size: 28px;
+    font-family: cursive;
+    background-color:  #a7d1f3;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+    max-width: 880px;
+    margin: 20px auto;
+}
+
+header {
+    height: 120px;
+    background-color: #e3e0e0;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.heading-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.welcome-text {
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.map-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px
+}
+
+.heading {
+    font-family: 'Dancing Script', cursive;
+    font-size: 48px;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.logout-button {
+    background-color: #64B5F6;
+    font:white;
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+    margin-right: 30px;
+}
+.home-link{
+    padding: 10px 15px;
+    /* background-color: #64B5F6; */
+    border-radius: 25px;
+    margin-left: 100px;
+    margin-right: 20px;
+}
+
+.images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .images img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+  }
+  
+  .images img:hover {
+    transform: scale(1.05);
+  }
+
+
+.functions-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.myfunctions {
+    background: linear-gradient(#d3e6f6,#a5cff3);
+    border-radius: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.myfunctions:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.adv {
+    width: 100%;
+    height: 220px; 
+    border-radius: 20px;
+    margin-bottom: 15px;
+    object-fit: cover;
+    display: block;
+}
+.myfunctions h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #00796b;
+}
+
+.myfunctions p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #00bfa6;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: #009f8a;
+    transform: scale(1.05);
+}
+
+footer {
+    background-color: #e3e0e0;
+    color: black;
+    text-align: center;
+    padding: 1rem 1rem;
+    font-family: 'Dancing Script', cursive;
+}
+
+.tag-1 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .myimg, .myfunctions, .myfunctions2 {
+        width: 90%;
+        max-width: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .functions-container {
+        grid-template-columns: repeat(1, 1fr); /* Stack vertically on mobile */
+    }
+}
+/* Mobile */
+@media (max-width: 768px) {
+    .tagline {
+        font-size: 20px;
+    }
+
+    .heading-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .heading {
+        font-size: 32px;
+    }
+
+    .logout-button {
+        margin-left: 0;
+    }
+
+    .map-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .advv, .adv {
+        width: 150px;
+        height: 150px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}

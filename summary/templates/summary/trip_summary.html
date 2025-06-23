@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Tactics - Trip Summary</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/task.css' %}">
+    <style>
+        .section {
+            margin: 30px auto;
+            max-width: 800px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #1a5276;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+        }
+        .location-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background: #fff;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="heading-container">
+        <span class="welcome-text">Hello {{ request.user }} !!</span>
+        <img src="{% static 'images/gps.png' %}" alt="Map Icon" class="map-icon">
+        <h1 class="heading">Trip Summary</h1>
+        <div class="header-links">
+            <a href="{% url 'intro' %}" class="home-link">Home</a>
+            <form method="POST" action="{% url 'logout' %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="section">
+        <div style="text-align: center; margin: 20px;">
+    <a href="{% url 'generate_pdf' %}" class="add-expense-btn" target="_blank">Download PDF Summary</a>
+</div>
+        <h2>Packing List</h2>
+        <ul>
+            {% for task in tasks %}
+                <li>{{ task.title }} {% if task.complete %}(✓){% endif %}</li>
+            {% empty %}
+                <li>No packing items found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Itinerary</h2>
+        {% for i in itineraries %}
+            <div class="location-card">
+                <h3>{{ i.title }}</h3>
+                <p><strong>State:</strong> {{ i.state }}</p>
+                <p><strong>From:</strong> {{ i.start_date }} <strong>To:</strong> {{ i.end_date }}</p>
+                <p><strong>Notes:</strong> {{ i.notes }}</p>
+
+                {% if i.locations.all %}
+                <p><strong>Locations:</strong></p>
+                <ul>
+                    {% for loc in i.locations.all %}
+                        <li>{{ loc.name }} ({{ loc.city }}, {{ loc.state }}) - {{ loc.google_rating }} ⭐</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No itineraries available.</p>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h2>Expenses</h2>
+        <ul>
+            {% for e in expenses %}
+                <li>{{ e.date }} - ₹{{ e.amount }} ({{ e.category }})</li>
+            {% empty %}
+                <li>No expenses recorded.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Travel Journal</h2>
+        <ul>
+            {% for j in journals %}
+                <li>
+                    <strong>{{ j.caption }}</strong> — {{ j.created_at|date:"d M Y" }}
+                </li>
+            {% empty %}
+                <li>No journal entries yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</main>
+
+<footer>
+    <p class="tag-1">Travel Savvy. Travel Happy !!</p>
+    <p class="brand">Travel Tactics</p>
+</footer>
+</body>
+</html>
